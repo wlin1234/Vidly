@@ -1,0 +1,26 @@
+﻿@model Vidly.ViewModels.RandomMovieViewModel
+@{
+    ViewBag.Title = "Cusomters";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cusomters</h2>
+@if (Model.SelectedCustomer != null)
+{
+     <p>@Model.SelectedCustomer.Name</p> 
+}
+else { 
+    if (Model.Customers.Count == 0)
+    {
+        <p>We don't have any customers yet.</p>
+    }
+    else {
+        <table style="width:100%">
+            <th>Customer</th>
+            @for (int i = 0; i < Model.Customers.Count; i++)
+            {
+               <tr><td>@Html.ActionLink(Model.Customers[i].Name, "CustomerDetails", "Movies", new { index = i+1 }, null)</td></tr>
+            }        
+        </table>
+    }
+}
